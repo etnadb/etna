@@ -1,5 +1,5 @@
 {
-  "name": "@jsmonday/etna",
+  "name": "etna",
   "version": "0.0.1",
   "description": "NoSQL in memory Database",
   "main": "index.js",
@@ -25,8 +25,10 @@
     "@babel/core": "7.6.0",
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-flow": "7.0.0",
+    "core-js": "3.2.1",
     "flow-bin": "0.107.0",
-    "jest": "^24.9.0"
+    "jest": "24.9.0",
+    "regenerator-runtime": "0.13.3"
   },
   "dependencies": {
     "dotenv": "8.1.0",

@@ -1,6 +1,7 @@
 const parser = require("../dist/parser");
+require("regenerator-runtime");
 
-test("Testing `getTokens` method", () => {
+test("Testing `getTokens` function", () => {
 
   const command1 = `SET &int age: 10`;
   const command2 = `GET age`;
@@ -39,4 +40,16 @@ test("Testing `getTokens` method", () => {
   expect(tokens5[0]).toBe("wrong");
   expect(tokens5[1]).toBe("command");
   expect(tokens5[2]).toBe("test");
+});
+
+test("Testing `getCommand` function", async () => {
+
+  try {
+    expect(await parser.getCommand("GET").command).toBe("GET");
+    expect(await parser.getCommand("SET").command).toBe("SET");
+  } 
+  catch (err) {
+    console.log(err);
+  }
+
 });
