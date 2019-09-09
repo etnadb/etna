@@ -1,6 +1,6 @@
 {
   "name": "etna",
-  "version": "0.0.1",
+  "version": "0.0.1-dev",
   "description": "NoSQL in memory Database",
   "main": "index.js",
   "scripts": {
