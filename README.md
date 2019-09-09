@@ -34,11 +34,12 @@ Etna currently supports five basic types:
 - `&json`
 
 ### Commands
-Etna currently supports three basic commands:
+Etna currently supports four basic commands:
 
 - `SET`
 - `GET`
 - `DELETE`
+- `EXIST`
 
 ### Query Language
 
@@ -59,6 +60,13 @@ command   key
 Delete the `name` value:
 ```etna
 DELETE    name
+^         ^
+command   key
+```
+
+Check if the `name` key exists:
+```etna
+EXIST     name
 ^         ^
 command   key
 ```

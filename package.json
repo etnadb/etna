@@ -16,7 +16,8 @@
     "redis",
     "in-memory",
     "nosql",
-    "schemaless"
+    "schemaless",
+    "hashtable"
   ],
   "author": "Michele Riva <ciao@micheleriva.it>",
   "license": "MIT",

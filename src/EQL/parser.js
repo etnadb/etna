@@ -7,7 +7,8 @@ type ASTObj = { [string]: string };
 const commandsRegex: tokenTypeCheck = {
   SET:    /^SET/,
   GET:    /^GET/,
-  DELETE: /^DELETE/
+  DELETE: /^DELETE/,
+  EXIST:  /^EXIST/
 };
 
 const typeRegex: tokenTypeCheck = {
