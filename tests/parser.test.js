@@ -68,34 +68,32 @@ test("Testing `getType` function", () => {
 
 });
 
-test("Testing `isValidKey` function", () => {
+test("Testing `getKey` function", () => {
 
-  expect(parser.isValidKey("name:"))    .toBeTruthy();
-
-  parser.isValidKey("name:")    .then((res) => expect(res.key).toBe("name"))
-  parser.isValidKey("lastName:").then((res) => expect(res.key).toBe("lastName"))
-  parser.isValidKey("foo:")     .then((res) => expect(res.key).toBe("foo"))
-  parser.isValidKey("key:")     .then((res) => expect(res.key).toBe("key"))
-  parser.isValidKey("value:")   .then((res) => expect(res.key).toBe("value"))
+  parser.getKey("name:")    .then((res) => expect(res.key).toBe("name"))
+  parser.getKey("lastName:").then((res) => expect(res.key).toBe("lastName"))
+  parser.getKey("foo:")     .then((res) => expect(res.key).toBe("foo"))
+  parser.getKey("key:")     .then((res) => expect(res.key).toBe("key"))
+  parser.getKey("value:")   .then((res) => expect(res.key).toBe("value"))
   
-  parser.isValidKey("value")  .then().catch((err) => expect(err).toBeDefined())
-  parser.isValidKey("name")   .then().catch((err) => expect(err).toBeDefined())
-  parser.isValidKey("name&")  .then().catch((err) => expect(err).toBeDefined())
-  parser.isValidKey("&asd")   .then().catch((err) => expect(err).toBeDefined())
+  parser.getKey("value")  .then().catch((err) => expect(err).toBeDefined())
+  parser.getKey("name")   .then().catch((err) => expect(err).toBeDefined())
+  parser.getKey("name&")  .then().catch((err) => expect(err).toBeDefined())
+  parser.getKey("&asd")   .then().catch((err) => expect(err).toBeDefined())
 
 });
 
-test("Testing `isValidValue` function", () => {
+test("Testing `getValue` function", () => {
 
-  parser.isValidValue(`"mitch"`)           .then((res) => expect(res.value).toBe(`"mitch"`))
-  parser.isValidValue(`'val'`)             .then((res) => expect(res.value).toBe(`'val'`))
-  parser.isValidValue(`'00'`)              .then((res) => expect(res.value).toBe(`'00'`))
-  parser.isValidValue(`"0.19"`)            .then((res) => expect(res.value).toBe(`"0.19"`))
-  parser.isValidValue(`'{"foo": "bar"}'`)  .then((res) => expect(res.value).toBe(`'{"foo": "bar"}'`))
+  parser.getValue(`"mitch"`)           .then((res) => expect(res.value).toBe(`"mitch"`))
+  parser.getValue(`'val'`)             .then((res) => expect(res.value).toBe(`'val'`))
+  parser.getValue(`'00'`)              .then((res) => expect(res.value).toBe(`'00'`))
+  parser.getValue(`"0.19"`)            .then((res) => expect(res.value).toBe(`"0.19"`))
+  parser.getValue(`'{"foo": "bar"}'`)  .then((res) => expect(res.value).toBe(`'{"foo": "bar"}'`))
 
-  parser.isValidValue("value")  .then().catch((err) => expect(err).toBeDefined())
-  parser.isValidValue("name")   .then().catch((err) => expect(err).toBeDefined())
-  parser.isValidValue(`name&"`) .then().catch((err) => expect(err).toBeDefined())
-  parser.isValidValue("'asd")   .then().catch((err) => expect(err).toBeDefined())
+  parser.getValue("value")  .then().catch((err) => expect(err).toBeDefined())
+  parser.getValue("name")   .then().catch((err) => expect(err).toBeDefined())
+  parser.getValue(`name&"`) .then().catch((err) => expect(err).toBeDefined())
+  parser.getValue("'asd")   .then().catch((err) => expect(err).toBeDefined())
 
 });

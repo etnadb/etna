@@ -77,7 +77,7 @@ export const getType = (token: string): Promise<ASTObj> => {
  * @returns {Promise<ASTObj>}
  */
 
-export const isValidKey = (token: string): Promise<ASTObj> => (
+export const getKey = (token: string): Promise<ASTObj> => (
   new Promise((resolve, reject) => keyRegex.test(token) 
                                 ? resolve({ key: token.slice(0, -1) }) 
                                 : reject(`Invalid key: ${token}`))
@@ -89,7 +89,7 @@ export const isValidKey = (token: string): Promise<ASTObj> => (
  * @returns {Promise<ASTObj>}
  */
 
-export const isValidValue = (token: string): Promise<ASTObj> => (
+export const getValue = (token: string): Promise<ASTObj> => (
   new Promise((resolve, reject) => keyRegex.test(token) 
                                 ? resolve({ value: token }) 
                                 : reject(`Invalid value: ${token}`))
@@ -101,10 +101,20 @@ export const tokenizer = (message: string): Promise<any> => {
     try {
 
       const tokens = getTokens(message);
-      
-      if (tokens.length !== 4) reject("malformed query");
-      
+
       const command = await getCommand(tokens[0]);
+      const type    = await getType(tokens[1]);
+      const key     = await getKey(tokens[2]);
+      const value   = await getValue(tokens[3]);
+
+      const ast = {
+        command,
+        type,
+        key,
+        value
+      };
+
+      console.log(ast);
 
     }
 

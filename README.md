@@ -56,7 +56,7 @@ GET       name
 command   key
 ```
 
-DELETE the `name` value:
+Delete the `name` value:
 ```etna
 DELETE    name
 ^         ^
