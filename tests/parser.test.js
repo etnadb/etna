@@ -1,4 +1,4 @@
-const parser = require("../dist/parser");
+const parser = require("../dist/DSL/parser");
 require("regenerator-runtime");
 
 test("Testing `getTokens` function", () => {
@@ -71,29 +71,31 @@ test("Testing `getType` function", () => {
 test("Testing `isValidKey` function", () => {
 
   expect(parser.isValidKey("name:"))    .toBeTruthy();
-  expect(parser.isValidKey("lastName:")).toBeTruthy();
-  expect(parser.isValidKey("foo:"))     .toBeTruthy();
-  expect(parser.isValidKey("key:"))     .toBeTruthy();
-  expect(parser.isValidKey("value:"))   .toBeTruthy();
+
+  parser.isValidKey("name:")    .then((res) => expect(res.key).toBe("name"))
+  parser.isValidKey("lastName:").then((res) => expect(res.key).toBe("lastName"))
+  parser.isValidKey("foo:")     .then((res) => expect(res.key).toBe("foo"))
+  parser.isValidKey("key:")     .then((res) => expect(res.key).toBe("key"))
+  parser.isValidKey("value:")   .then((res) => expect(res.key).toBe("value"))
   
-  expect(parser.isValidKey("value")).toBeFalsy();
-  expect(parser.isValidKey("name")) .toBeFalsy();
-  expect(parser.isValidKey("name&")).toBeFalsy();
-  expect(parser.isValidKey("&asd")) .toBeFalsy();
+  parser.isValidKey("value")  .then().catch((err) => expect(err).toBeDefined())
+  parser.isValidKey("name")   .then().catch((err) => expect(err).toBeDefined())
+  parser.isValidKey("name&")  .then().catch((err) => expect(err).toBeDefined())
+  parser.isValidKey("&asd")   .then().catch((err) => expect(err).toBeDefined())
 
 });
 
 test("Testing `isValidValue` function", () => {
 
-  expect(parser.isValidValue(`"mitch"`))         .toBeTruthy();
-  expect(parser.isValidValue(`'val'`))           .toBeTruthy();
-  expect(parser.isValidValue(`'00'`))            .toBeTruthy();
-  expect(parser.isValidValue(`"0.19"`))          .toBeTruthy();
-  expect(parser.isValidValue(`'{"foo": "bar"}'`)).toBeTruthy();
-  
-  expect(parser.isValidValue("test"))      .toBeFalsy();
-  expect(parser.isValidValue("`rest`"))    .toBeFalsy();
-  expect(parser.isValidValue(`"not-valid`)).toBeFalsy();
-  expect(parser.isValidValue("not-valid'")).toBeFalsy();
+  parser.isValidValue(`"mitch"`)           .then((res) => expect(res.value).toBe(`"mitch"`))
+  parser.isValidValue(`'val'`)             .then((res) => expect(res.value).toBe(`'val'`))
+  parser.isValidValue(`'00'`)              .then((res) => expect(res.value).toBe(`'00'`))
+  parser.isValidValue(`"0.19"`)            .then((res) => expect(res.value).toBe(`"0.19"`))
+  parser.isValidValue(`'{"foo": "bar"}'`)  .then((res) => expect(res.value).toBe(`'{"foo": "bar"}'`))
+
+  parser.isValidValue("value")  .then().catch((err) => expect(err).toBeDefined())
+  parser.isValidValue("name")   .then().catch((err) => expect(err).toBeDefined())
+  parser.isValidValue(`name&"`) .then().catch((err) => expect(err).toBeDefined())
+  parser.isValidValue("'asd")   .then().catch((err) => expect(err).toBeDefined())
 
 });

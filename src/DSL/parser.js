@@ -21,8 +21,11 @@ const typeRegex: tokenTypeCheck = {
 const keyRegex:   RegExp = /^\w*\:$/i;
 const valueRegex: RegExp = /^["|'].+["|']$/;
 
-// SET &string foo: bar
-
+/**
+ * @function getTokens
+ * @param {string} message
+ * @returns {string[]}
+ */
 export const getTokens = (message: string): string[] => (
   message
     .split(" ")
@@ -30,6 +33,11 @@ export const getTokens = (message: string): string[] => (
     .filter(token => token !== "")
 )
 
+/**
+ * @function getCommand
+ * @param {string} message
+ * @returns {Promise<ASTObj>}
+ */
 export const getCommand = (token: string): Promise<ASTObj> => {
   return new Promise((resolve, reject) => {
 
@@ -44,10 +52,11 @@ export const getCommand = (token: string): Promise<ASTObj> => {
   });
 }
 
-export const isValidKey   = (token: string): boolean => keyRegex.test(token);
-
-export const isValidValue = (token: string): boolean => valueRegex.test(token);
-
+/**
+ * @function getType
+ * @param {string} message
+ * @returns {Promise<ASTObj>}
+ */
 export const getType = (token: string): Promise<ASTObj> => {
   return new Promise((resolve, reject) => {
 
@@ -61,6 +70,31 @@ export const getType = (token: string): Promise<ASTObj> => {
 
   });
 }
+
+/**
+ * @function isValidKey
+ * @param {string} token
+ * @returns {Promise<ASTObj>}
+ */
+
+export const isValidKey = (token: string): Promise<ASTObj> => (
+  new Promise((resolve, reject) => keyRegex.test(token) 
+                                ? resolve({ key: token.slice(0, -1) }) 
+                                : reject(`Invalid key: ${token}`))
+);
+
+/**
+ * @function isValidValue
+ * @param {string} token
+ * @returns {Promise<ASTObj>}
+ */
+
+export const isValidValue = (token: string): Promise<ASTObj> => (
+  new Promise((resolve, reject) => keyRegex.test(token) 
+                                ? resolve({ value: token }) 
+                                : reject(`Invalid value: ${token}`))
+);
+
 
 export const tokenizer = (message: string): Promise<any> => {
   return new Promise(async (resolve, reject) => {
