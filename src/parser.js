@@ -10,8 +10,6 @@ const commandsRegex: tokenTypeCheck = {
   DELETE: /^DELETE/
 };
 
-const keyRegex = /^\w*\:$/i;
-
 const typeRegex: tokenTypeCheck = {
   string:  /^&string/,
   integer: /^&int/,
@@ -19,6 +17,9 @@ const typeRegex: tokenTypeCheck = {
   json:    /^&json/,
   null:    /^&null/
 };
+
+const keyRegex:   RegExp = /^\w*\:$/i;
+const valueRegex: RegExp = /^["|'].+["|']$/;
 
 // SET &string foo: bar
 
@@ -43,7 +44,9 @@ export const getCommand = (token: string): Promise<ASTObj> => {
   });
 }
 
-export const isValidKey = (token: string): boolean => keyRegex.test(token);
+export const isValidKey   = (token: string): boolean => keyRegex.test(token);
+
+export const isValidValue = (token: string): boolean => valueRegex.test(token);
 
 export const getType = (token: string): Promise<ASTObj> => {
   return new Promise((resolve, reject) => {

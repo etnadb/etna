@@ -82,3 +82,18 @@ test("Testing `isValidKey` function", () => {
   expect(parser.isValidKey("&asd")) .toBeFalsy();
 
 });
+
+test("Testing `isValidValue` function", () => {
+
+  expect(parser.isValidValue(`"mitch"`))         .toBeTruthy();
+  expect(parser.isValidValue(`'val'`))           .toBeTruthy();
+  expect(parser.isValidValue(`'00'`))            .toBeTruthy();
+  expect(parser.isValidValue(`"0.19"`))          .toBeTruthy();
+  expect(parser.isValidValue(`'{"foo": "bar"}'`)).toBeTruthy();
+  
+  expect(parser.isValidValue("test"))      .toBeFalsy();
+  expect(parser.isValidValue("`rest`"))    .toBeFalsy();
+  expect(parser.isValidValue(`"not-valid`)).toBeFalsy();
+  expect(parser.isValidValue("not-valid'")).toBeFalsy();
+
+});
