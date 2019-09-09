@@ -34,6 +34,7 @@ Etna currently supports five basic types:
 - `&json`
 
 ### Commands
+Etna currently supports three basic commands:
 
 - `SET`
 - `GET`
@@ -41,8 +42,23 @@ Etna currently supports five basic types:
 
 ### Query Language
 
+Set a new value of type string and `name` as its key:
 ```etna
+SET       &string   name:  "John"
+^         ^         ^      ^
+command   type      key    value
+```
 
-SET         &string name:  "John"
-^ command   ^ type  ^ key  ^ value
+Get the `name` value:
+```etna
+GET       name
+^         ^
+command   key
+```
+
+DELETE the `name` value:
+```etna
+DELETE    name
+^         ^
+command   key
 ```
