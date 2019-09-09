@@ -44,7 +44,7 @@ Etna currently supports three basic commands:
 
 Set a new value of type string and `name` as its key:
 ```etna
-SET       &string   name:  "John"
+SET       &string   name  "John"
 ^         ^         ^      ^
 command   type      key    value
 ```
