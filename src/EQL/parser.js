@@ -12,11 +12,12 @@ const commandsRegex: tokenTypeCheck = {
 };
 
 const typeRegex: tokenTypeCheck = {
-  string:  /^&string/,
-  integer: /^&int/,
-  float:   /^&float/,
-  json:    /^&json/,
-  null:    /^&null/
+  string:  /^&[string|s]/,
+  integer: /^&[int|i]/,
+  float:   /^&[float|f]/,
+  json:    /^&[json|j]/,
+  null:    /^&[null|n]/,
+  bool:    /^&[bool|b]/
 };
 
 const keyRegex:   RegExp = /^[a-z]*$/i;

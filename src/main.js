@@ -18,7 +18,6 @@ server.on("connection", (socket) => {
 
     try {
       const res = await runEQL({ store, message });
-      console.log(res);
       socket.send(`${res}`);
     }
 

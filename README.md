@@ -27,13 +27,23 @@ EXIST name
 ```
 
 ### Types
-Etna currently supports five basic types:
+Etna currently supports six basic types:
 
 - `&string`
 - `&integer`
 - `&float`
 - `&null`
+- `&bool`
 - `&json`
+
+Every time has its own alias:
+
+- `&s`
+- `&i`
+- `&f`
+- `&n`
+- `&b`
+- `&j`
 
 ### Commands
 Etna currently supports four basic commands:

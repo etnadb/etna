@@ -4,19 +4,26 @@ export default ({ store, message }) => (
   new Promise(async (resolve, reject) => {
 
     try {
-      const command = await buildAST(message);
+      const { 
+        key, 
+        value, 
+        type, 
+        command 
+      } = await buildAST(message);
 
-      switch (command.command) {
+      switch (command) {
         case "SET":
-          store.set(command.key, command.value);
-          resolve("OK.");
+          resolve(store.set({ key, value, type }));
           break;
         case "DELETE": 
-          store.delete(command.key);
-          resolve("OK.");
-          break; 
-        case "GET":    return resolve(store.get(command.key)); 
-        case "EXIST":  return resolve(store.exist(command.key)); 
+          resolve(store.delete(key));
+          break;
+        case "GET":    
+          resolve(store.get(key));
+          break;
+        case "EXIST":  
+          resolve(store.exist(key));
+          break;
       }
     }
 

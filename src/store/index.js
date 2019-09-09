@@ -1,4 +1,4 @@
-import HashTable from "@ronomon/hash-table";
+import convertTypeVal from "../EQL/converter";
 
 export default class Store {
 
@@ -6,8 +6,9 @@ export default class Store {
     this.table = new Map();
   }
 
-  set(key, value) {
-    this.table.set(key, value);
+  set({ key, value, type }) {
+    this.table.set(key, convertTypeVal({ value, type }));
+    return "OK."
   }
 
   get(key) {
@@ -16,6 +17,7 @@ export default class Store {
 
   delete(key) {
     this.table.delete(key);
+    return "OK."
   }
 
   exist(key) {
