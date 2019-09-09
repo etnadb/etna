@@ -1,18 +1,17 @@
 <img src="/docs/cover.png" />
 
-# WORK IN PROGRESS - DEVELOP BRANCH
-
+<h1 align="center"> WORK IN PROGRESS </h1>
 
 # EQL - Etna Query Language
 
 ### Short Demonstration
 
 ```etna
-SET &string name: "Mitch"
-# => OK. name: "Mitch"
+SET &string name "Mitch"
+# => OK.
 
-SET &int age: "24"
-# => OK. age: 24
+SET &int age "24"
+# => OK.
 
 GET name
 # => "Mitch"
@@ -21,7 +20,10 @@ GET age
 # => 24
 
 DELETE name
-# => OK. DELETED name
+# => OK.
+
+EXIST name
+# => false
 ```
 
 ### Types

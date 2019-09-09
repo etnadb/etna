@@ -9,7 +9,8 @@
     "prepublish": "yarn run build",
     "flow": "glow --watch",
     "dev": "babel src/ -d dist/ --watch",
-    "dev:server": "nodemon ./dist/main.js"
+    "dev:server": "nodemon ./dist/main.js",
+    "dev:ws": "wsc ws://localhost:3333"
   },
   "keywords": [
     "database",
