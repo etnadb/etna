@@ -34,7 +34,7 @@ test("Testing `getTokens` function", () => {
   expect(tokens3[2]).toBe("name:");
   expect(tokens3[3]).toBe(`"mitch"`);
 
-  expect(tokens4[0]).toBe("SET");
+  expect(tokens4[0]).toBe("GET");
   expect(tokens4[1]).toBe("name");
 
   expect(tokens5[0]).toBe("wrong");
@@ -44,12 +44,26 @@ test("Testing `getTokens` function", () => {
 
 test("Testing `getCommand` function", async () => {
 
-  try {
-    expect(await parser.getCommand("GET").command).toBe("GET");
-    expect(await parser.getCommand("SET").command).toBe("SET");
-  } 
-  catch (err) {
-    console.log(err);
-  }
+  parser.getCommand("GET")   .then(res => expect(res.command).toBe("GET"));
+  parser.getCommand("SET")   .then(res => expect(res.command).toBe("SET"));
+  parser.getCommand("DELETE").then(res => expect(res.command).toBe("DELETE"));
+
+  parser.getCommand("FOO")
+        .then()
+        .catch((err) => expect(err).toBeDefined())
+
+});
+
+test("Testing `getType` function", async () => {
+
+  parser.getType("&string").then(res => expect(res.type).toBe("string"));
+  parser.getType("&int")   .then(res => expect(res.type).toBe("integer"));
+  parser.getType("&float") .then(res => expect(res.type).toBe("float"));
+  parser.getType("&json")  .then(res => expect(res.type).toBe("json"));
+  parser.getType("&null")  .then(res => expect(res.type).toBe("null"));
+
+  parser.getType("&random")
+        .then()
+        .catch((err) => expect(err).toBeDefined())
 
 });

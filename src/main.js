@@ -1,7 +1,7 @@
 // @flow
 import WebSocket from "ws";
 import dotenv from "dotenv";
-import Store from "./store";
+// import Store from "./store";
 
 dotenv.config();
 
@@ -11,13 +11,13 @@ const server = new WebSocket.Server({
 
 server.on("connection", (socket): void => {
 
-  const store = new Store();
+  // const store = new Store();
 
   socket.on("message", (message): void => {
 
     switch (true) {
       case /^SET\s*./.test(message):
-        return store.set()
+        // return store.set()
     }
 
   });

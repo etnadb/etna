@@ -2,9 +2,12 @@
 
 type tokenTypeCheck = { [string]: RegExp };
 
+type ASTObj = { [string]: string };
+
 const commandsRegex: tokenTypeCheck = {
-  SET: /^SET/,
-  GET: /^GET/
+  SET:    /^SET/,
+  GET:    /^GET/,
+  DELETE: /^DELETE/
 };
 
 const keyRegex: tokenTypeCheck = {
@@ -15,27 +18,43 @@ const typeRegex: tokenTypeCheck = {
   string:  /^&string/,
   integer: /^&int/,
   float:   /^&float/,
-  json:    /^&json/
+  json:    /^&json/,
+  null:    /^&null/
 };
 
 // SET &string foo: bar
 
-export const getTokens = (message: string): string[] => message
-                                                        .split(" ")
-                                                        .map(token => token.replace(/\s/g, ""))
-                                                        .filter(token => token !== "");
+export const getTokens = (message: string): string[] => (
+  message
+    .split(" ")
+    .map(token => token.replace(/\s/g, ""))
+    .filter(token => token !== "")
+)
 
-export const getCommand = (token: string): Promise<any> => {
+export const getCommand = (token: string): Promise<ASTObj> => {
   return new Promise((resolve, reject) => {
 
     const availableCommands = Object.keys(commandsRegex);
 
     for (const command of availableCommands)
-      // $FlowFixMe
       if (commandsRegex[command].test(token))
-        resolve({ command: command })
+        resolve({ command })
 
     reject(`${token} is not a valid command. Valid commands are: ${availableCommands.join(", ")}`);
+
+  });
+}
+
+export const getType = (token: string): Promise<ASTObj> => {
+  return new Promise((resolve, reject) => {
+
+    const availableTypes = Object.keys(typeRegex);
+
+    for (const type of availableTypes)
+      if (typeRegex[type].test(token))
+        resolve({ type })
+
+    reject(`${token} is not a valid type. Valid types are: ${availableTypes.join(", ")}`);
 
   });
 }
