@@ -7,7 +7,7 @@ type AST = {
   value:   string
 };
 
-async function buildSetInstruction(tokens: string[]): AST {
+export async function buildSetInstruction(tokens: string[]): AST {
   try {
     const [ type, key, value ] = await Promise.all([ 
         parser.getType(tokens[1]), 
@@ -23,9 +23,9 @@ async function buildSetInstruction(tokens: string[]): AST {
 
 }
 
-async function buildGetInstruction(tokens: string[]): AST {
+export async function buildGetInstruction(tokens: string[]): AST {
   try {
-    const key = parser.getKey(tokens[1])
+    const key = await parser.getKey(tokens[1])
     return { command: "GET", ...key }
   }
 
@@ -35,7 +35,19 @@ async function buildGetInstruction(tokens: string[]): AST {
 
 }
 
-async function buildAST(message: string): AST {
+export async function buildDeleteInstruction(tokens: string[]): AST {
+  try {
+    const key = await parser.getKey(tokens[1])
+    return { command: "DELETE", ...key }
+  }
+
+  catch (err) {
+    console.error(`Parser error =>`, err);
+  }
+
+}
+
+export async function buildAST(message: string): Promise<AST> {
 
   try {
 
@@ -54,9 +66,3 @@ async function buildAST(message: string): AST {
     console.error("AST error =>", err);
   }
 }
-
-(async () => {
-
-  const ast = await buildAST("GET name:")
-  console.log(ast);
-})()

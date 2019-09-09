@@ -18,7 +18,7 @@ const typeRegex: tokenTypeCheck = {
   null:    /^&null/
 };
 
-const keyRegex:   RegExp = /^\w*\$/i;
+const keyRegex:   RegExp = /^[a-z]*$/i;
 const valueRegex: RegExp = /^["|'].+["|']$/;
 
 /**
@@ -79,7 +79,7 @@ export const getType = (token: string): Promise<ASTObj> => {
 
 export const getKey = (token: string): Promise<ASTObj> => (
   new Promise((resolve, reject) => keyRegex.test(token) 
-                                ? resolve({ key: token.slice(0, -1) }) 
+                                ? resolve({ key: token }) 
                                 : reject(`Invalid key: ${token}`))
 );
 

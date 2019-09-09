@@ -1,5 +1,4 @@
-const parser = require("../dist/DSL/parser");
-require("regenerator-runtime");
+const parser = require("../dist/EQL/parser");
 
 test("Testing `getTokens` function", () => {
 
@@ -70,16 +69,16 @@ test("Testing `getType` function", () => {
 
 test("Testing `getKey` function", () => {
 
-  parser.getKey("name:")    .then((res) => expect(res.key).toBe("name"))
-  parser.getKey("lastName:").then((res) => expect(res.key).toBe("lastName"))
-  parser.getKey("foo:")     .then((res) => expect(res.key).toBe("foo"))
-  parser.getKey("key:")     .then((res) => expect(res.key).toBe("key"))
-  parser.getKey("value:")   .then((res) => expect(res.key).toBe("value"))
+  parser.getKey("name")    .then((res) => expect(res.key).toBe("name"))
+  parser.getKey("lastName").then((res) => expect(res.key).toBe("lastName"))
+  parser.getKey("foo")     .then((res) => expect(res.key).toBe("foo"))
+  parser.getKey("key")     .then((res) => expect(res.key).toBe("key"))
+  parser.getKey("value")   .then((res) => expect(res.key).toBe("value"))
   
-  parser.getKey("value")  .then().catch((err) => expect(err).toBeDefined())
-  parser.getKey("name")   .then().catch((err) => expect(err).toBeDefined())
-  parser.getKey("name&")  .then().catch((err) => expect(err).toBeDefined())
-  parser.getKey("&asd")   .then().catch((err) => expect(err).toBeDefined())
+  parser.getKey("'value'")    .then().catch((err) => expect(err).toBeDefined())
+  parser.getKey("&name")      .then().catch((err) => expect(err).toBeDefined())
+  parser.getKey("name space") .then().catch((err) => expect(err).toBeDefined())
+  parser.getKey("^foo")       .then().catch((err) => expect(err).toBeDefined())
 
 });
 
