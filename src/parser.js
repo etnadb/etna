@@ -10,9 +10,7 @@ const commandsRegex: tokenTypeCheck = {
   DELETE: /^DELETE/
 };
 
-const keyRegex: tokenTypeCheck = {
-  plain: /^\w*\:$/i
-};
+const keyRegex = /^\w*\:$/i;
 
 const typeRegex: tokenTypeCheck = {
   string:  /^&string/,
@@ -44,6 +42,8 @@ export const getCommand = (token: string): Promise<ASTObj> => {
 
   });
 }
+
+export const isValidKey = (token: string): boolean => keyRegex.test(token);
 
 export const getType = (token: string): Promise<ASTObj> => {
   return new Promise((resolve, reject) => {

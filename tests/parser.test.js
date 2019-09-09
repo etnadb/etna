@@ -42,7 +42,7 @@ test("Testing `getTokens` function", () => {
   expect(tokens5[2]).toBe("test");
 });
 
-test("Testing `getCommand` function", async () => {
+test("Testing `getCommand` function", () => {
 
   parser.getCommand("GET")   .then(res => expect(res.command).toBe("GET"));
   parser.getCommand("SET")   .then(res => expect(res.command).toBe("SET"));
@@ -54,7 +54,7 @@ test("Testing `getCommand` function", async () => {
 
 });
 
-test("Testing `getType` function", async () => {
+test("Testing `getType` function", () => {
 
   parser.getType("&string").then(res => expect(res.type).toBe("string"));
   parser.getType("&int")   .then(res => expect(res.type).toBe("integer"));
@@ -65,5 +65,20 @@ test("Testing `getType` function", async () => {
   parser.getType("&random")
         .then()
         .catch((err) => expect(err).toBeDefined())
+
+});
+
+test("Testing `isValidKey` function", () => {
+
+  expect(parser.isValidKey("name:"))    .toBeTruthy();
+  expect(parser.isValidKey("lastName:")).toBeTruthy();
+  expect(parser.isValidKey("foo:"))     .toBeTruthy();
+  expect(parser.isValidKey("key:"))     .toBeTruthy();
+  expect(parser.isValidKey("value:"))   .toBeTruthy();
+  
+  expect(parser.isValidKey("value")).toBeFalsy();
+  expect(parser.isValidKey("name")) .toBeFalsy();
+  expect(parser.isValidKey("name&")).toBeFalsy();
+  expect(parser.isValidKey("&asd")) .toBeFalsy();
 
 });
