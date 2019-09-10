@@ -1,5 +1,9 @@
 <img src="/docs/cover.png" />
 
+[![Build Status](https://travis-ci.org/etnadb/etna.svg?branch=master)](https://travis-ci.org/etnadb/etna)
+
+[![Coverage](https://img.shields.io/codecov/c/github/etnadb/etna.svg)](https://codecov.io/gh/etnadb/etna)
+
 <h1 align="center"> WORK IN PROGRESS </h1>
 
 # EQL - Etna Query Language
