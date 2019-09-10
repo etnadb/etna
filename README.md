@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/etnadb/etna.svg?branch=master)](https://travis-ci.org/etnadb/etna)
 [![Coverage](https://img.shields.io/codecov/c/github/etnadb/etna.svg)](https://codecov.io/gh/etnadb/etna)
+[![Open Collective backers and sponsors](https://img.shields.io/opencollective/all/jsmonday)](https://opencollective.com/jsmonday)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/etnadb/etna/blob/master/LICENSE.md)
 
 <h1 align="center"> WORK IN PROGRESS </h1>
 
