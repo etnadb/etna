@@ -1,4 +1,4 @@
-import convertTypeVal from "../EQL/converter";
+import { convert as convertTypeVal } from "../EQL/converter";
 
 export default class Store {
 
