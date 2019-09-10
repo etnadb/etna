@@ -21,6 +21,30 @@ test("Testing `buildAST` function", async () => {
   expect(ast4.command).toBe("EXIST");
   expect(ast4.key)    .toBe("name");
 
+  AST.buildAST("ERR &string name 'Mitch'")
+    .then()
+    .catch((err) => {
+      expect(err).toBeDefined();
+    });
+
+  AST.buildAST("SET &err name 'Mitch'")
+    .then()
+    .catch((err) => {
+      expect(err).toBeDefined();
+    });
+
+  AST.buildAST("SET &string &name 'Mitch'")
+    .then()
+    .catch((err) => {
+      expect(err).toBeDefined();
+    });
+
+  AST.buildAST("SET &string name err")
+    .then()
+    .catch((err) => {
+      expect(err).toBeDefined();
+    });
+
 });
 
 test("Testing `buildExistInstruction` function", async () => {
@@ -33,6 +57,14 @@ test("Testing `buildExistInstruction` function", async () => {
 
   expect(i2.command).toBe("EXIST");
   expect(i2.key)    .toBe("age");
+
+  AST.buildExistInstruction(["ERR", "name"])
+    .then()
+    .catch((err) => expect(err).toBeDefined());
+
+  AST.buildExistInstruction(["EXIST", "&err"])
+    .then()
+    .catch((err) => expect(err).toBeDefined());
 
 });
 
@@ -47,6 +79,14 @@ test("Testing `buildDeleteInstruction` function", async () => {
   expect(i2.command).toBe("DELETE");
   expect(i2.key)    .toBe("age");
 
+  AST.buildDeleteInstruction(["ERR", "name"])
+    .then()
+    .catch((err) => expect(err).toBeDefined());
+
+  AST.buildDeleteInstruction(["DELETE", "&err"])
+    .then()
+    .catch((err) => expect(err).toBeDefined());
+
 });
 
 test("Testing `buildGetInstruction` function", async () => {
@@ -59,6 +99,14 @@ test("Testing `buildGetInstruction` function", async () => {
 
   expect(i2.command).toBe("GET");
   expect(i2.key)    .toBe("age");
+
+  AST.buildGetInstruction(["ERR", "name"])
+    .then()
+    .catch((err) => expect(err).toBeDefined());
+
+  AST.buildGetInstruction(["GET", "&err"])
+    .then()
+    .catch((err) => expect(err).toBeDefined());
 
 });
 

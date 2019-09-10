@@ -18,7 +18,7 @@ export async function buildSetInstruction(tokens: string[]): AST {
   }
 
   catch (err) {
-    console.error(`Parser error =>`, err);
+    return err;
   }
 
 }
@@ -30,7 +30,7 @@ export async function buildGetInstruction(tokens: string[]): AST {
   }
 
   catch (err) {
-    console.error(`Parser error =>`, err);
+    return err;
   }
 
 }
@@ -42,7 +42,7 @@ export async function buildDeleteInstruction(tokens: string[]): AST {
   }
 
   catch (err) {
-    console.error(`Parser error =>`, err);
+    return err;
   }
 
 }
@@ -54,7 +54,7 @@ export async function buildExistInstruction(tokens: string[]): AST {
   }
 
   catch (err) {
-    console.error(`Parser error =>`, err);
+    return err;
   }
 
 }
@@ -76,7 +76,6 @@ export function buildAST(message: string): Promise<AST> {
     }
 
     catch (err) {
-      console.error("AST error =>", err);
       reject("AST error =>", err);
     }
   });
