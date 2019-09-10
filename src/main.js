@@ -1,8 +1,8 @@
 // @flow
 import WebSocket from "ws";
-import dotenv from "dotenv";
-import Store from "./store";
-import runEQL from "./EQL/run";
+import dotenv    from "dotenv";
+import Store     from "./store";
+import runEQL    from "./EQL/run";
 
 dotenv.config();
 
