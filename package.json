@@ -1,6 +1,6 @@
 {
   "name": "etna",
-  "version": "0.0.1-alpha",
+  "version": "0.0.2-alpha",
   "description": "NoSQL in memory Database",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,13 @@
     "etna": "./dist/main.js"
   },
   "author": "Michele Riva <ciao@micheleriva.it>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/etnadb/etna"
+  },
+  "bugs": {
+    "url": "https://github.com/etnadb/etna/issues"
+  },
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "7.6.0",
