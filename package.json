@@ -1,8 +1,8 @@
 {
   "name": "etna",
-  "version": "0.0.2-alpha",
+  "version": "0.0.4-alpha",
   "description": "NoSQL in memory Database",
-  "main": "index.js",
+  "main": "dist/main.js",
   "scripts": {
     "test": "jest --coverage",
     "build": "babel src/ -d dist/",
@@ -10,7 +10,7 @@
     "flow": "glow --watch",
     "dev": "babel src/ -d dist/ --watch",
     "dev:server": "nodemon ./dist/main.js",
-    "dev:ws": "wsc ws://localhost:3333"
+    "dev:ws": "wsc ws://localhost:3999"
   },
   "keywords": [
     "database",
@@ -21,8 +21,11 @@
     "hashtable"
   ],
   "bin": {
-    "etna": "./dist/main.js"
+    "etna": "dist/main.js"
   },
+  "files": [
+    "dist"
+  ],
   "author": "Michele Riva <ciao@micheleriva.it>",
   "repository": {
     "type": "git",

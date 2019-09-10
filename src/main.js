@@ -8,11 +8,13 @@ import runEQL    from "./EQL/run";
 
 dotenv.config();
 
-const server = new WebSocket.Server({
-  port: process.env.ETNA_PORT || 3333
-});
+const PORT = process.env.ETNA_PORT || 3999;
+
+const server = new WebSocket.Server({ port: PORT });
 
 const store = new Store();
+
+console.log(`Etna server ready on port ${PORT}`);
 
 server.on("connection", (socket) => {
   socket.on("message", async (message) => {
