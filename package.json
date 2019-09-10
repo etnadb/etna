@@ -4,7 +4,7 @@
   "description": "NoSQL in memory Database",
   "main": "index.js",
   "scripts": {
-    "test": "npm run build && jest --coverage",
+    "test": "jest --coverage",
     "build": "babel src/ -d dist/",
     "prepublish": "yarn run build",
     "flow": "glow --watch",
@@ -27,6 +27,8 @@
     "@babel/core": "7.6.0",
     "@babel/preset-env": "7.6.0",
     "@babel/preset-flow": "7.0.0",
+    "babel-jest": "24.9.0",
+    "babel-plugin-transform-flow-strip-types": "6.22.0",
     "codecov": "3.5.0",
     "core-js": "3.2.1",
     "flow-bin": "0.107.0",

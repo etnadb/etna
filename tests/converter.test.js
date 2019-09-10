@@ -1,4 +1,4 @@
-const { convert } = require("../dist/EQL/converter");
+const { convert } = require("../src/EQL/converter");
 
 test("Testing `converter`", () => {
 

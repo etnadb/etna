@@ -1,4 +1,4 @@
-const parser = require("../dist/EQL/parser");
+const parser = require("../src/EQL/parser");
 
 test("Testing `getTokens` function", () => {
 
