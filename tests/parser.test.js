@@ -46,6 +46,7 @@ test("Testing `getCommand` function", () => {
   parser.getCommand("GET")   .then(res => expect(res.command).toBe("GET"));
   parser.getCommand("SET")   .then(res => expect(res.command).toBe("SET"));
   parser.getCommand("DELETE").then(res => expect(res.command).toBe("DELETE"));
+  parser.getCommand("EXIST") .then(res => expect(res.command).toBe("EXIST"));
 
   parser.getCommand("FOO")
         .then()
@@ -55,13 +56,26 @@ test("Testing `getCommand` function", () => {
 
 test("Testing `getType` function", () => {
 
-  parser.getType("&string").then(res => expect(res.type).toBe("string"));
-  parser.getType("&int")   .then(res => expect(res.type).toBe("integer"));
-  parser.getType("&float") .then(res => expect(res.type).toBe("float"));
-  parser.getType("&json")  .then(res => expect(res.type).toBe("json"));
-  parser.getType("&null")  .then(res => expect(res.type).toBe("null"));
+  parser.getType("&string")  .then(res => expect(res.type).toBe("string"));
+  parser.getType("&int")     .then(res => expect(res.type).toBe("integer"));
+  parser.getType("&integer") .then(res => expect(res.type).toBe("integer"));
+  parser.getType("&float")   .then(res => expect(res.type).toBe("float"));
+  parser.getType("&json")    .then(res => expect(res.type).toBe("json"));
+  parser.getType("&null")    .then(res => expect(res.type).toBe("null"));
+  parser.getType("&bool")    .then(res => expect(res.type).toBe("bool"));
+
+  parser.getType("&s").then(res => expect(res.type).toBe("string"));
+  parser.getType("&i")   .then(res => expect(res.type).toBe("integer"));
+  parser.getType("&f") .then(res => expect(res.type).toBe("float"));
+  parser.getType("&j")  .then(res => expect(res.type).toBe("json"));
+  parser.getType("&n")  .then(res => expect(res.type).toBe("null"));
+  parser.getType("&b")  .then(res => expect(res.type).toBe("bool"));
 
   parser.getType("&random")
+        .then()
+        .catch((err) => expect(err).toBeDefined())
+
+  parser.getType("0:A")
         .then()
         .catch((err) => expect(err).toBeDefined())
 

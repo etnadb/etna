@@ -2,21 +2,27 @@
 
 type etnaValue = string | number | boolean | null;
 
-export default  ({ value, type }: { [string]: string }): etnaValue => {
+export function removeQuotes(value: string): string {
+  return value.replace(/^("|')|("|')$/g, "");
+}
+
+export function convert ({ value, type }: { [string]: string }): etnaValue {
+
+  const val = removeQuotes(value);
 
   switch (type) {
     case "bool":
-      return Boolean(value);
+      return val !== "false";
     case "integer":
-      return parseInt(value);
+      return parseInt(val);
     case "float":
-      return parseFloat(value);
+      return parseFloat(val);
     case "null":
       return null;
     case "string":
     case "json":
     default:
-      return value.replace(/^["|']|["|']/g, "");
+      return val;
   }
 
 }

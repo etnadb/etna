@@ -12,16 +12,16 @@ const commandsRegex: tokenTypeCheck = {
 };
 
 const typeRegex: tokenTypeCheck = {
-  string:  /^&[string|s]/,
-  integer: /^&[int|i]/,
-  float:   /^&[float|f]/,
-  json:    /^&[json|j]/,
-  null:    /^&[null|n]/,
-  bool:    /^&[bool|b]/
+  string:  /^&(string|s)/,
+  integer: /^&(integer|int|i)/,
+  float:   /^&(float|f)/,
+  json:    /^&(json|j)/,
+  null:    /^&(null|n)/,
+  bool:    /^&(bool|b)/
 };
 
 const keyRegex:   RegExp = /^[a-z]*$/i;
-const valueRegex: RegExp = /^["|'].+["|']$/;
+const valueRegex: RegExp = /^("|').+("|')$/;
 
 /**
  * @function getTokens
@@ -45,9 +45,11 @@ export const getCommand = (token: string): Promise<ASTObj> => {
 
     const availableCommands = Object.keys(commandsRegex);
 
-    for (const command of availableCommands)
-      if (commandsRegex[command].test(token))
+    for (const command of availableCommands) {
+      if (commandsRegex[command].test(token)) {
         resolve({ command })
+      }
+    }
 
     reject(`${token} is not a valid command. Valid commands are: ${availableCommands.join(", ")}`);
 
@@ -63,10 +65,12 @@ export const getType = (token: string): Promise<ASTObj> => {
   return new Promise((resolve, reject) => {
 
     const availableTypes = Object.keys(typeRegex);
-
-    for (const type of availableTypes)
-      if (typeRegex[type].test(token))
-        resolve({ type })
+    for (const type of availableTypes) {
+      if (typeRegex[type].test(token)) {
+        resolve({ type });
+        return;
+      }
+    }
 
     reject(`${token} is not a valid type. Valid types are: ${availableTypes.join(", ")}`);
 
@@ -80,9 +84,11 @@ export const getType = (token: string): Promise<ASTObj> => {
  */
 
 export const getKey = (token: string): Promise<ASTObj> => (
-  new Promise((resolve, reject) => keyRegex.test(token) 
-                                ? resolve({ key: token }) 
-                                : reject(`Invalid key: ${token}`))
+  new Promise((resolve, reject) => (
+    keyRegex.test(token) 
+      ? resolve({ key: token }) 
+      : reject(`Invalid key: ${token}`))
+  )
 );
 
 /**
@@ -92,7 +98,9 @@ export const getKey = (token: string): Promise<ASTObj> => (
  */
 
 export const getValue = (token: string): Promise<ASTObj> => (
-  new Promise((resolve, reject) => valueRegex.test(token) 
-                                ? resolve({ value: token }) 
-                                : reject(`Invalid value: ${token}`))
+  new Promise((resolve, reject) => (
+    valueRegex.test(token) 
+      ? resolve({ value: token }) 
+      : reject(`Invalid value: ${token}`))
+  )
 );
