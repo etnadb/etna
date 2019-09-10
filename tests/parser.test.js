@@ -44,9 +44,13 @@ test("Testing `getTokens` function", () => {
 test("Testing `getCommand` function", () => {
 
   parser.getCommand("GET")   .then(res => expect(res.command).toBe("GET"));
+  parser.getCommand("get")   .then(res => expect(res.command).toBe("GET"));
   parser.getCommand("SET")   .then(res => expect(res.command).toBe("SET"));
+  parser.getCommand("set")   .then(res => expect(res.command).toBe("SET"));
   parser.getCommand("DELETE").then(res => expect(res.command).toBe("DELETE"));
+  parser.getCommand("delete").then(res => expect(res.command).toBe("DELETE"));
   parser.getCommand("EXIST") .then(res => expect(res.command).toBe("EXIST"));
+  parser.getCommand("exist") .then(res => expect(res.command).toBe("EXIST"));
 
   parser.getCommand("FOO")
         .then()

@@ -5,19 +5,19 @@ type tokenTypeCheck = { [string]: RegExp };
 type ASTObj = { [string]: string };
 
 const commandsRegex: tokenTypeCheck = {
-  SET:    /^SET/,
-  GET:    /^GET/,
-  DELETE: /^DELETE/,
-  EXIST:  /^EXIST/
+  SET:    /^SET$/i,
+  GET:    /^GET$/i,
+  DELETE: /^DELETE$/i,
+  EXIST:  /^EXIST$/i
 };
 
 const typeRegex: tokenTypeCheck = {
-  string:  /^&(string|s)/,
-  integer: /^&(integer|int|i)/,
-  float:   /^&(float|f)/,
-  json:    /^&(json|j)/,
-  null:    /^&(null|n)/,
-  bool:    /^&(bool|b)/
+  string:  /^&(string|s)$/,
+  integer: /^&(integer|int|i)$/,
+  float:   /^&(float|f)$/,
+  json:    /^&(json|j)$/,
+  null:    /^&(null|n)$/,
+  bool:    /^&(bool|b)$/
 };
 
 const keyRegex:   RegExp = /^[a-z]*$/i;
