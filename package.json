@@ -1,6 +1,6 @@
 {
   "name": "etna",
-  "version": "0.0.2-dev",
+  "version": "0.0.1-alpha",
   "description": "NoSQL in memory Database",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,9 @@
     "schemaless",
     "hashtable"
   ],
+  "bin": {
+    "etna": "./dist/main.js"
+  },
   "author": "Michele Riva <ciao@micheleriva.it>",
   "license": "MIT",
   "devDependencies": {

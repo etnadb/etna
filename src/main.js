@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // @flow
 import WebSocket from "ws";
 import dotenv    from "dotenv";
